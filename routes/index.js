@@ -3,6 +3,8 @@ import { carritoApi } from '../components/carrito/index.js'
 import { productosApi } from '../components/productos/index.js'
 import { loginApi } from '../components/login/index.js'
 import { logoutApi } from '../components/logout/index.js'
+import { registrationApi } from '../components/registration/index.js'
+import { failureApi } from '../components/failure/index.js'
 
 export const serverRoutes = ( app, passport ) => {
 
@@ -11,6 +13,10 @@ export const serverRoutes = ( app, passport ) => {
 
     loginApi(app, passport)
     logoutApi(app)
+
+    registrationApi(app, passport)
+
+    failureApi(app)
 
     app.get("/", (req, res, next) => {
         res.send("Todo ok")
