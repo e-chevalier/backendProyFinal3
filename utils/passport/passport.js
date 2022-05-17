@@ -33,9 +33,9 @@ export const serverPassport = (app) => {
     // CONFIG PASSPORT LOCAL
 
     passport.use('login', new LocalStrategy(
-        (username, password, done) => {
+        (email, password, done) => {
 
-            User.users.findOne({ email: username }, (err, user) => {
+            User.users.findOne({ email: email }, (err, user) => {
 
                 if (err) {
                     logger.error("Error in login LocalStrategy")
@@ -43,7 +43,7 @@ export const serverPassport = (app) => {
                 }
 
                 if (!user) {
-                    logger.info("User Not Found with username: " + username);
+                    logger.info("User Not Found with email: " + email);
                     return done(null, false)
                 }
 
