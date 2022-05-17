@@ -1,6 +1,6 @@
 import logger from '../utils/logger/winston_config.js'
 
-const container_type = process.env.npm_config_container_type ? process.env.npm_config_container_type : 'File'
+const container_type = process.env.npm_config_container_type ? process.env.npm_config_container_type : 'mongodb'
 logger.info("------------------ OPCIONES DE CONTENEDOR --------------------------------")
 logger.info("npm run dev --container_type=[file, firestore, mongodb, mysql, sqlite3]")
 logger.info("--------------------------------------------------------------------------")
