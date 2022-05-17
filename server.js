@@ -3,12 +3,14 @@ import { config } from './config/index.js'
 import { serverRoutes } from './routes/index.js'
 import logger from './utils/logger/winston_config.js'
 import cors from 'cors'
+import loggerMethodAndURLs from './utils/middleware/loggerMethodAndURLs.js'
 
 const app = express()
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors("*"))
+app.use(loggerMethodAndURLs)
 
 const PORT = config.port
 let administrator = true

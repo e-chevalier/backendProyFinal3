@@ -5,7 +5,7 @@ class Productos {
 
     async getProductos(id) {
         try {
-            logger.info(`GET ${id ? "WITH ID => id: " + id : "ALL => "} -- productsRouters`)
+            //logger.info(`GET ${id ? "WITH ID => id: " + id : "ALL => "} -- productsRouters`)
             let res = id ? [await productsMemory.getById(id)] : await productsMemory.getAll()
 
             return ({ status: "OK", products: res, isEmpty: res.length ? false : true })
@@ -17,7 +17,7 @@ class Productos {
 
     async postProductos(prod) {
         try {
-            logger.info(`POST -- productsRouters`)
+            //logger.info(`POST -- productsRouters`)
             let response = {}
 
             if (Object.keys(prod).length !== 0 && !Object.values(prod).includes('')) {
@@ -39,7 +39,7 @@ class Productos {
 
     async putProductos(id, prod) {
         try {
-            logger.info(`PUT => id: ${id} -- productsRouters`)
+            //logger.info(`PUT => id: ${id} -- productsRouters`)
             let exists = await productsMemory.getById(id)
 
             if (exists) {
@@ -57,7 +57,7 @@ class Productos {
 
     async deleteProductos(id) {
         try {
-            logger.info(`DELETE => id: ${id} -- productsRouters`)
+            //logger.info(`DELETE => id: ${id} -- productsRouters`)
             let index = await productsMemory.deleteById(id)
 
             if (index >= 0) {
@@ -67,7 +67,7 @@ class Productos {
             return (index >= 0 ? { id: id } : { error: 'Producto no encontrado.' })
 
         } catch (error) {
-            logger.error(error)
+            //logger.error(error)
         }
     }
 }

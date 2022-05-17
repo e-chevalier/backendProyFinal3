@@ -5,7 +5,7 @@ class Carrito {
 
     async postCarrito() {
         try {
-            logger.info(`POST CrearCarrito-- cartsRouters`)
+            //logger.info(`POST CrearCarrito-- cartsRouters`)
             let newCartID = await cartsMemory.save({ products: [] })
             //Save to DAO Container
             cartsContainer.save({ products: [] })
@@ -19,7 +19,7 @@ class Carrito {
 
     async deleteCarrito(id) {
         try {
-            logger.info(`DELETE Carrito => id: ${id} -- cartsRouters`)
+            //logger.info(`DELETE Carrito => id: ${id} -- cartsRouters`)
             let index = await cartsMemory.deleteById(id)
 
             if (index >= 0) {
@@ -36,7 +36,7 @@ class Carrito {
 
     async getCarritoProductos(id) {
         try {
-            logger.info(`GET Productos => id: ${id} -- cartsRouters`)
+            //logger.info(`GET Productos => id: ${id} -- cartsRouters`)
 
             let cart = await cartsMemory.getById(id)
 
@@ -49,7 +49,7 @@ class Carrito {
 
     async postCarritoProducto(id_cart, id_prod, qty) {
         try {
-            logger.info(`POST Carrito Add PROD  => idCart: ${id_cart} id_prod: ${id_prod} qty: ${qty}-- cartsRouters`)
+            //logger.info(`POST Carrito Add PROD  => idCart: ${id_cart} id_prod: ${id_prod} qty: ${qty}-- cartsRouters`)
 
             let cart = await cartsMemory.getById(id_cart)
             let prod = await productsMemory.getById(id_prod)
@@ -92,7 +92,7 @@ class Carrito {
 
     async deleteCarritoProducto(id_cart, id_prod) {
         try {
-            logger.info(`DELETE Productos IDPROD: ${id_prod}  FROM CART ID: ${id_cart} -- cartsRouters`)
+            //logger.info(`DELETE Productos IDPROD: ${id_prod}  FROM CART ID: ${id_cart} -- cartsRouters`)
 
             let cart = await cartsMemory.getById(id_cart)
             let response = {}
