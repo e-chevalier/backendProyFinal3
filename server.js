@@ -71,14 +71,14 @@ const argv = yargs(hideBin(process.argv))
     })
     .argv
 
-const PORT = process.env.PORT || argv.puerto
+const PORT = argv.puerto
 
 logger.info(`Valor de entorno NODE_ENV: ${process.env.NODE_ENV}`);
 
 if (argv.modo.toUpperCase() == 'CLUSTER') {
 
     if (cluster.isPrimary) {
-        logger.log(`Master Cluster PID ${process.pid} is running.`)
+        logger.info(`Master Cluster PID ${process.pid} is running.`)
 
         // FORK WORKER
         for (let i = 0; i < numCPUs; i++) {
