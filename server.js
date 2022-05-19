@@ -25,6 +25,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(loggerMethodAndURLs)
 
+app.use('/uploads', express.static('uploads'))
+
 
 const httpServer = new HttpServer(app)
 

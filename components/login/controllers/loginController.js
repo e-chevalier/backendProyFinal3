@@ -26,6 +26,7 @@ class Login {
             // logger.warn(req.session)
             // logger.warn(req.cookies)
 
+            console.log(req.session.cookie)
             res.json({status: 'LOGINOK', data: req.user })
             
         } catch (error) {

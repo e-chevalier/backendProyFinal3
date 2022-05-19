@@ -9,6 +9,9 @@ const UsersSchema = mongoose.Schema({
     email: {type: String, require: true, max:250},
     firstname: {type: String, require: true, max:100},
     lastname: {type: String, require: true, max:100},
+    address: {type: String, require: true, max:100},
+    phone: {type: String, require: true, max:100},
+    age: {type: Date, require: true},
     photo: {type: String, require: true, max:400}
 })
 
