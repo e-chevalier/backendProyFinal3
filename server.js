@@ -19,8 +19,12 @@ const app = express()
 
 // Middlewares
 app.use(compression())
-app.use(cors("*"));
-app.use(cookieParser())
+app.use(cors({
+    origin: 'http://localhost:3000', // Location of react app were connecting to
+    credentials: true 
+}))
+
+app.use(cookieParser('secreto'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(loggerMethodAndURLs)
@@ -49,7 +53,8 @@ app.use(session({
     rolling: true,
     cookie: {
         maxAge: 600 * 1000,
-        sameSite: true
+        sameSite: 'none',
+        secure: false
     }
 }))
 
