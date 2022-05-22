@@ -43,7 +43,7 @@ export const serverPassport = (app) => {
                 }
 
                 if (!user) {
-                    logger.info("User Not Found with email: " + email);
+                    logger.info("User Not Found with email: " + username);
                     return done(null, false)
                 }
 
