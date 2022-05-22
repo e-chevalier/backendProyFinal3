@@ -33,9 +33,9 @@ export const serverPassport = (app) => {
     // CONFIG PASSPORT LOCAL
 
     passport.use('login', new LocalStrategy(
-        (email, password, done) => {
+        (username, password, done) => {
 
-            User.users.findOne({ email: email }, (err, user) => {
+            User.users.findOne({ email: username }, (err, user) => {
 
                 if (err) {
                     logger.error("Error in login LocalStrategy")

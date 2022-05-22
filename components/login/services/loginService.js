@@ -11,10 +11,10 @@ class Login {
 
             if (req.isAuthenticated()) {
                 logger.info("Usuario logueado")
-                response = { status: "LOGGEDIN" }
+                response = { status: "LOGGEDIN", data: req.user }
             } else {
                 logger.info("Usuario no logueado")
-                response = { status: "NOTLOGGEDIN", retry: retry }
+                response = { status: "NOTLOGGEDIN", data: {}, retry: retry }
             }
 
             return response
@@ -29,7 +29,7 @@ class Login {
 
         try {
             
-            let response = {status: 'OK', user: req.user}
+            let response = {status: 'OK', data: req.user}
 
             return response
 

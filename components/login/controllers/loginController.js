@@ -5,11 +5,12 @@ class Login {
 
     async getLogin(req, res, next) {
         try {
-            let {status, retry} = await loginService.getLogin(req)
+            let {status, data, retry} = await loginService.getLogin(req)
 
             if ( status == "LOGGEDIN" ) {
-                res.json({ status, retry})
-            } else {
+                res.json({ status, data})
+            } else { // NOTLOGGEDIN
+                // TODO: send data: null or {} ???
                 res.json({ status, retry})
             }
             
@@ -21,13 +22,9 @@ class Login {
 
     async postLogin(req, res, next) {
         try {
-            const { user } = await loginService.postLogin(req)
+            const { data } = await loginService.postLogin(req)
 
-            // logger.warn(req.session)
-            // logger.warn(req.cookies)
-
-            console.log(req.session.cookie)
-            res.json({status: 'LOGINOK', data: req.user })
+            res.json({status: 'LOGINOK', data })
             
         } catch (error) {
             logger.error(error);
