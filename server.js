@@ -15,6 +15,9 @@ import os from 'os'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 
+import twilio_config from './config/twilio.js'
+import sendMessage from './utils/twilio/twilio.js'
+
 const app = express()
 
 // Middlewares
@@ -135,6 +138,19 @@ if (argv.modo.toUpperCase() == 'CLUSTER') {
     })
 
     server.on('error', error => logger.error(`Error en servidor ${error}`))
+
+
+
+
+    const toNumberWhatsapp = twilio_config.TONUMBERWHATSAPP
+    const toNumberSMS = twilio_config.TONUMBERSMS
+    let bodyWhatsapp = 'Your appointment is coming up on July 21 at 3PM'
+    let bodySms = 'Su pedido ha sido recibido y se encuentra en preparacion.'
+
+
+    sendMessage('sms', toNumberSMS, bodySms)
+    sendMessage('whatsapp', toNumberWhatsapp, bodyWhatsapp)
+
 
 }
 
