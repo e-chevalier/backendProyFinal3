@@ -1,6 +1,10 @@
 import { productsMemory, cartsContainer, cartsMemory } from '../../../daos/index.js'
 import logger from '../../../utils/logger/winston_config.js'
 
+import twilio_config from '../../../config/twilio.js'
+import sendMessage from '../../../utils/twilio/twilio.js'
+
+
 class Carrito {
 
     async postCarrito() {
@@ -121,6 +125,34 @@ class Carrito {
             logger.error(error)
         }
     }
+    
+    async confirmOrder(body) {
+        try {
+
+            let { cartId, shoopingList, subTotal, shippingCost, user } = body
+            console.log(body)
+
+
+            // let cart = await cartsMemory.getById(id)
+
+            // console.log(cart)
+
+            const toNumberWhatsapp = twilio_config.TONUMBERWHATSAPP
+            const toNumberSMS = twilio_config.TONUMBERSMS
+            let bodyWhatsapp = 'Your appointment is coming up on July 21 at 3PM'
+            let bodySms = 'Su pedido ha sido recibido y se encuentra en preparacion.'
+
+
+            //sendMessage('sms', toNumberSMS, bodySms)
+            sendMessage('whatsapp', toNumberWhatsapp, bodyWhatsapp)
+
+            return {status: 'Order confirmed', cartId: cartId}
+
+        } catch (error) {
+            logger.error(error)            
+        }
+    }
+
 
 }
 

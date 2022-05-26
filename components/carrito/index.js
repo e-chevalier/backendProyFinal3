@@ -10,4 +10,5 @@ export const carritoApi = (app) => {
     router.get('/:id/productos', carritoController.getCarritoProductos)
     router.post('/:id/productos', carritoController.postCarritoProducto )
     router.delete('/:id/productos/:id_prod', carritoController.deleteCarritoProducto )
+    router.post('/:id/confirmorder', carritoController.confirmOrder)
 }

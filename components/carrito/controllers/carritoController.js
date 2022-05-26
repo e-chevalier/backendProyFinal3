@@ -48,6 +48,17 @@ class Carrito {
         }
     }
 
+    async confirmOrder(req, res, next) {
+        try {
+            
+            let response = await carritoService.confirmOrder(req.body)
+            res.json(response)
+
+        } catch (error) {
+            logger.error(error)            
+        }
+    }
+
 }
 
 export let carritoController = new Carrito()
